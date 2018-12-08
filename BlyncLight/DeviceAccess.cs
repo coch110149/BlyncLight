@@ -19,10 +19,11 @@ namespace BlyncN
         internal IntPtr pspDeviceInterfaceData = IntPtr.Zero;
         internal IntPtr pspDeviceInterfaceDetailData = IntPtr.Zero;
         internal BlyncController oBlyncController;
+        internal byte testNumber = 255;
 
         internal bool GetDevices(ref BlyncController.DeviceInfo[] aoDevInfo,ref int m_nTotalDevices)
         {
-            this.oBlyncController.WriteToLog("GetDevices Entry");
+            
             uint num1 = 0;
             IntPtr zero1 = IntPtr.Zero;
             IntPtr zero2 = IntPtr.Zero;
@@ -60,102 +61,101 @@ namespace BlyncN
                     Marshal.PtrToStringAuto(new IntPtr(num3.ToInt64()));
                     string empty = string.Empty;
                     flag = this.GetDevicePathName(ref guid,classDevs,uintDeviceID,ref empty);
-                    this.oBlyncController.WriteToLog("GetDevicePathName Result: " + flag.ToString());
-                    this.oBlyncController.WriteToLog("GetDevicePathName szDevicePathName: " + empty);
+        
                     if(empty.Contains("vid_1130&pid_1e00&mi_01"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 2;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB20 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 2;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB20 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_1130&pid_0001&mi_01") || empty.Contains("vid_1130&pid_0002&mi_01"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 1;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB10 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 1;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB10 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_0e53&pid_2517") || empty.Contains("vid_2c0d&pid_0002") || empty.Contains("vid_2c0d&pid_000d"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 4;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB30S DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 4;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB30S DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_0e53&pid_2516") || empty.Contains("vid_2c0d&pid_0001") || empty.Contains("vid_2c0d&pid_000c"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 3;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB30 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 3;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB30 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0004&mi_03&col02"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 5;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB_HEADSET_LUMENA110 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 5;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB_HEADSET_LUMENA110 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0005&mi_03&col02"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 8;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB_HEADSET_LUMENA120 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 8;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB_HEADSET_LUMENA120 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_0d8c&pid_0031&mi_03&col02"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 9;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB_HEADSET_LUMENA DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 9;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB_HEADSET_LUMENA DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0006") || empty.Contains("vid_2c0d&pid_000b"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 6;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCLIGHT_WIRELESS DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 6;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCLIGHT_WIRELESS DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0009"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 12;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCLIGHT_EMBRAVA_EMBEDDED DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 12;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCLIGHT_EMBRAVA_EMBEDDED DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_0e53&pid_2519") || empty.Contains("vid_2c0d&pid_0003") || empty.Contains("vid_2c0d&pid_000a"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 7;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCLIGHT_MINI DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 7;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCLIGHT_MINI DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,0U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0007&mi_03&col02"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 10;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB_HEADSET_LUMENA210 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,1073741824U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 10;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB_HEADSET_LUMENA210 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,1073741824U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     } else if(empty.Contains("vid_2c0d&pid_0008&mi_03&col02"))
                     {
-                        aoDevInfo[m_nTotalDevices].byDeviceType = (byte) 11;
-                        aoDevInfo[m_nTotalDevices].szDeviceName = "BLYNCUSB_HEADSET_LUMENA220 DEVICE";
-                        aoDevInfo[m_nTotalDevices].szDevicePath = empty;
-                        aoDevInfo[m_nTotalDevices].nDeviceIndex = m_nTotalDevices;
-                        aoDevInfo[m_nTotalDevices].pHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,1073741824U,IntPtr.Zero);
+                        aoDevInfo[m_nTotalDevices].ByDeviceType = (byte) 11;
+                        aoDevInfo[m_nTotalDevices].SzDeviceName = "BLYNCUSB_HEADSET_LUMENA220 DEVICE";
+                        aoDevInfo[m_nTotalDevices].SzDevicePath = empty;
+                        aoDevInfo[m_nTotalDevices].NDeviceIndex = m_nTotalDevices;
+                        aoDevInfo[m_nTotalDevices].PHandle = NativeMethods.CreateFile(empty,3221225472U,3U,IntPtr.Zero,3U,1073741824U,IntPtr.Zero);
                         ++m_nTotalDevices;
                     }
                 }
@@ -172,7 +172,7 @@ namespace BlyncN
             }
             if(classDevs != IntPtr.Zero)
                 NativeMethods.SetupDiDestroyDeviceInfoList(classDevs);
-            this.oBlyncController.WriteToLog("GetDevices Exit: " + flag.ToString());
+           
             return flag;
         }
 
@@ -180,7 +180,7 @@ namespace BlyncN
 
         internal bool GetDevicePathName(ref Guid guid,IntPtr hDevInfo,uint uintDeviceID,ref string strDevicePathName)
         {
-            this.oBlyncController.WriteToLog("GetDevicePathName Entry");
+           
             IntPtr zero = IntPtr.Zero;
             int RequiredSize = 0;
             DeviceAccessDeclarations.SP_DEVICE_INTERFACE_DATA deviceInterfaceData = new DeviceAccessDeclarations.SP_DEVICE_INTERFACE_DATA();
@@ -208,13 +208,13 @@ namespace BlyncN
                 Marshal.FreeHGlobal(this.pspDeviceInterfaceDetailData);
                 this.pspDeviceInterfaceDetailData = IntPtr.Zero;
             }
-            this.oBlyncController.WriteToLog("GetDevicePathName Exit: " + flag.ToString());
+           
             return flag;
         }
 
         internal bool SendBlyncTenx20ChipSetControlCommand(string szDevicePath,byte byBlyncControlCode)
         {
-            this.oBlyncController.WriteToLog("SendBlyncTenx20ChipSetControlCommand Entry");
+          
             uint lpBytesReturned = 0;
             this.abyBlyncIntOutputReportBuffer[0] = (byte) 0;
             this.abyBlyncIntOutputReportBuffer[1] = byBlyncControlCode;
@@ -229,15 +229,15 @@ namespace BlyncN
                 NativeMethods.CloseHandle(file);
                 IntPtr zero = IntPtr.Zero;
             }
-            this.oBlyncController.WriteToLog("SendBlyncTenx20ChipSetControlCommand Exit: " + flag.ToString());
+            
             return flag;
         }
 
         internal bool SendBlyncTenx10ChipSetControlCommand(IntPtr pHandle,byte byBlyncControlCode)
         {
-            this.oBlyncController.WriteToLog("SendBlyncTenx10ChipSetControlCommand Entry");
+            
             this.abyBlyncOutputReportBuffer[0] = (byte) 0;
-            this.abyBlyncOutputReportBuffer[1] = (byte) 85;
+            this.abyBlyncOutputReportBuffer[1] = (byte) 85; 
             this.abyBlyncOutputReportBuffer[2] = (byte) 83;
             this.abyBlyncOutputReportBuffer[3] = (byte) 66;
             this.abyBlyncOutputReportBuffer[4] = (byte) 67;
@@ -245,14 +245,15 @@ namespace BlyncN
             this.abyBlyncOutputReportBuffer[6] = (byte) 64;
             this.abyBlyncOutputReportBuffer[7] = (byte) 2;
             this.abyBlyncOutputReportBuffer[8] = byBlyncControlCode;
+            testNumber -= 10;
             bool flag = NativeMethods.HidD_SetOutputReport(pHandle,this.abyBlyncOutputReportBuffer,this.abyBlyncOutputReportBuffer.Length);
-            this.oBlyncController.WriteToLog("SendBlyncTenx10ChipSetControlCommand Exit: " + flag.ToString());
+            
             return flag;
         }
 
         internal bool SendBlyncUsb30ChipSetControlCommand(IntPtr pHandle,byte byRedValue,byte byGreenValue,byte byBlueValue,byte byLightControl,byte byMusicControl_1,byte byMusicControl_2)
         {
-            this.oBlyncController.WriteToLog("SendBlyncUsb30ChipSetControlCommand Entry");
+            
             this.abyBlyncOutputReportBuffer[0] = (byte) 0;
             this.abyBlyncOutputReportBuffer[1] = byRedValue;
             this.abyBlyncOutputReportBuffer[2] = byBlueValue;
@@ -263,13 +264,13 @@ namespace BlyncN
             this.abyBlyncOutputReportBuffer[7] = byte.MaxValue;
             this.abyBlyncOutputReportBuffer[8] = byte.MaxValue;
             bool flag = NativeMethods.HidD_SetOutputReport(pHandle,this.abyBlyncOutputReportBuffer,this.abyBlyncOutputReportBuffer.Length);
-            this.oBlyncController.WriteToLog("SendBlyncUsb30ChipSetControlCommand Exit: " + flag.ToString());
+            
             return flag;
         }
 
         internal bool SendBlyncUsbHeadset30ChipSetControlCommand(IntPtr pHandle,byte byRedValue,byte byGreenValue,byte byBlueValue,byte byLightControl)
         {
-            this.oBlyncController.WriteToLog("SendBlyncUsbHeadset30ChipSetControlCommand Entry");
+            
             for(int index = 0; index < this.abyBlyncUsbHeadsetOutputReportBuffer.Length; ++index)
                 this.abyBlyncUsbHeadsetOutputReportBuffer[index] = (byte) 0;
             this.abyBlyncUsbHeadsetOutputReportBuffer[0] = (byte) 5;
@@ -278,13 +279,13 @@ namespace BlyncN
             this.abyBlyncUsbHeadsetOutputReportBuffer[10] = byGreenValue;
             this.abyBlyncUsbHeadsetOutputReportBuffer[11] = byLightControl;
             bool flag = NativeMethods.HidD_SetOutputReport(pHandle,this.abyBlyncUsbHeadsetOutputReportBuffer,this.abyBlyncUsbHeadsetOutputReportBuffer.Length);
-            this.oBlyncController.WriteToLog("SendBlyncUsbHeadset30ChipSetControlCommand Exit: " + flag.ToString());
+            
             return flag;
         }
 
         internal bool SendBlyncUsbBluetoothHeadsetControlCommand(IntPtr pHandle,byte byRedValue,byte byGreenValue,byte byBlueValue,byte byLightControl)
         {
-            this.oBlyncController.WriteToLog("SendBlyncUsbBluetoothHeadsetControlCommand Entry");
+            
             for(int index = 0; index < this.abyBlyncBluetoothHeadsetOutputReportBuffer.Length; ++index)
                 this.abyBlyncBluetoothHeadsetOutputReportBuffer[index] = (byte) 0;
             this.abyBlyncBluetoothHeadsetOutputReportBuffer[0] = (byte) 5;
@@ -293,29 +294,29 @@ namespace BlyncN
             this.abyBlyncBluetoothHeadsetOutputReportBuffer[10] = byGreenValue;
             this.abyBlyncBluetoothHeadsetOutputReportBuffer[11] = byLightControl;
             bool flag = NativeMethods.HidD_SetOutputReport(pHandle,this.abyBlyncBluetoothHeadsetOutputReportBuffer,this.abyBlyncBluetoothHeadsetOutputReportBuffer.Length);
-            this.oBlyncController.WriteToLog("SendBlyncUsbBluetoothHeadsetControlCommand Exit: " + flag.ToString());
+            
             return flag;
         }
 
         internal bool GetDeviceUniqueId(IntPtr pHandle,ref uint unUniqueId)
         {
-            this.oBlyncController.WriteToLog("DevAcc_GetDeviceUniqueId Entry");
+            
             for(int index = 0; index < this.abyBlyncFeatureReportBuffer.Length; ++index)
                 this.abyBlyncFeatureReportBuffer[index] = (byte) 0;
             this.abyBlyncFeatureReportBuffer[0] = (byte) 0;
-            this.oBlyncController.WriteToLog("Calling HidD_GetFeature...");
+            
             bool feature = NativeMethods.HidD_GetFeature(pHandle,this.abyBlyncFeatureReportBuffer,this.abyBlyncFeatureReportBuffer.Length);
             if(!feature)
             {
-                this.oBlyncController.WriteToLog("HidD_GetFeature GetLastError: " + (object) NativeMethods.GetLastError());
+                
             } else
             {
-                this.oBlyncController.WriteToLog("Feature Report Buffer:");
+               
                 for(int index = 0; index < this.abyBlyncFeatureReportBuffer.Length; ++index)
-                    this.oBlyncController.WriteToLog("abyBlyncFeatureReportBuffer[" + (object) index + "]: " + (object) this.abyBlyncFeatureReportBuffer[index]);
+                    
                 unUniqueId = (uint) ((int) this.abyBlyncFeatureReportBuffer[8] | (int) this.abyBlyncFeatureReportBuffer[7] << 8 | (int) this.abyBlyncFeatureReportBuffer[6] << 16 | (int) this.abyBlyncFeatureReportBuffer[5] << 24);
             }
-            this.oBlyncController.WriteToLog("DevAcc_GetDeviceUniqueId Exit: " + feature.ToString());
+            
             return feature;
         }
     }
