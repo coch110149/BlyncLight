@@ -228,3 +228,4 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+/.vs/BlyncN/v15/Server/sqlite3

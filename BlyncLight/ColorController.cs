@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Blynclight;
+﻿using System.Collections.Generic;
 
 namespace BlyncN
 {
   public class ColorController
   {
-    private BlynclightController _con;
+    private BlyncController _con;
     private List<LightColor> _colors;
     private int _deviceCount;
     private int _colorIndex;
@@ -16,7 +12,7 @@ namespace BlyncN
     public ColorController()
     {
       _colors = new List<LightColor>();
-      _con = new BlynclightController();
+      _con = new BlyncController();
       _deviceCount = _con.InitBlyncDevices();
       _colorIndex = -1;
     }
@@ -26,20 +22,20 @@ namespace BlyncN
       get { return _deviceCount; }
     }
 
-    private BlynclightController.Color Map(LightColor color)
+    private BlyncController.Color Map(LightColor color)
     {
-      BlynclightController.Color ret;
+      BlyncController.Color ret;
       switch(color)
       {
-        case LightColor.Cyan: ret = BlynclightController.Color.Cyan; break;
-        case LightColor.White: ret = BlynclightController.Color.White; break;
-        case LightColor.Blue: ret = BlynclightController.Color.Blue; break;
-        case LightColor.Yellow: ret = BlynclightController.Color.Yellow; break;
-        case LightColor.Green: ret = BlynclightController.Color.Green; break;
-        case LightColor.Red: ret = BlynclightController.Color.Red; break;
-        case LightColor.Purple: ret = BlynclightController.Color.Purple; break;
+        case LightColor.Cyan: ret = BlyncController.Color.Cyan; break;
+        case LightColor.White: ret = BlyncController.Color.White; break;
+        case LightColor.Blue: ret = BlyncController.Color.Blue; break;
+        case LightColor.Yellow: ret = BlyncController.Color.Yellow; break;
+        case LightColor.Green: ret = BlyncController.Color.Green; break;
+        case LightColor.Red: ret = BlyncController.Color.Red; break;
+        case LightColor.Purple: ret = BlyncController.Color.Purple; break;
         
-        default: ret = BlynclightController.Color.Off; break;
+        default: ret = BlyncController.Color.Off; break;
       }
       return ret;
     }
